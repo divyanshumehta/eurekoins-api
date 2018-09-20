@@ -15,6 +15,7 @@ class Api::UsersController < Api::ApplicationController
 			user.coins = 50
 			t.save
 		end
+		user.coins = 0
 		usr_code = ""
 		user.name.split(" ").each do |word|
 			usr = usr + word[0]
