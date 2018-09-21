@@ -17,14 +17,16 @@ class Api::UsersController < Api::ApplicationController
 			render json: res
 			return
 		end
-		if params[:referred_invite_code] and !params[:referred_invite_code].blank?
+		user.coins = 0
+		host_user = User.find_by_invite_code(params[:referred_invite_code])
+		if params[:referred_invite_code] and !params[:referred_invite_code].blank? and host_user
 			t = Transaction.new
 			t.user = User.first
 			t.receiver = user.email
 			user.coins = 50
+			user.referred_invite_code = params[:referred_invite_code]
 			t.save
 		end
-		user.coins = 0
 		usr_code = ""
 		user.name.split(" ").each do |word|
 			usr_code = usr_code + word[0]
