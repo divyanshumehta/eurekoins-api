@@ -83,4 +83,17 @@ class Api::UsersController < Api::ApplicationController
 		end
 		render json: res
 	end
+
+	# Returns the invite code for the user
+	def invite_code
+		res = {}
+		user = User.find_by_token(params[:token])
+		if user
+			res[:status] = "0"
+			res[:invite_code] = user.invite_code
+		else
+			res[:status] = "1"
+		end
+		render json: res
+	end
 end
