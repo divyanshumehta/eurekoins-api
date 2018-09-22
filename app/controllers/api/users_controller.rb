@@ -77,7 +77,7 @@ class Api::UsersController < Api::ApplicationController
 		users = User.where("name ~ ?",params[:pattern])
 		if users
 			res[:status] = "0"
-			res[:users] = users.pluck(:name, :email)
+			res[:users] = users.pluck(:name, :email, :image)
 		else
 			res[:status] = "1"
 		end
