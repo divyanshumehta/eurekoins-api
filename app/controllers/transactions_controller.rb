@@ -1,4 +1,4 @@
-class Api::TransactionsController < Api::ApplicationController
+class TransactionsController < ApplicationController
 
     def transfer
         res = {}

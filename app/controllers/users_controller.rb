@@ -1,4 +1,4 @@
-class Api::UsersController < Api::ApplicationController
+class UsersController < ApplicationController
 
 	def register
 		res = {}
