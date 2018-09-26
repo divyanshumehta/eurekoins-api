@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   get '/api/users/:pattern' => 'users#user_list'
   get '/api/invite_code/:token' => 'users#invite_code'
   get '/api/transfer/:token' => 'transactions#transfer'
-
+  get '/api/coupon/:token' => 'coupons#avail_coupon'
 end
