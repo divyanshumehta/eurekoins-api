@@ -77,7 +77,7 @@ class UsersController < ApplicationController
 	# <return> [ [user1,email1], [user2,email2].....]
 	def user_list
 		res = {}
-		users = User.where("name ~ ?",params[:pattern])
+		users = User.where("lower(name) ~ ?",params[:pattern].downcase)
 		if users
 			res[:status] = "0"
 			res[:users] = users.pluck(:name, :email, :image)
