@@ -47,4 +47,24 @@ class TransactionsController < ApplicationController
         res[:status] = "0"      # Successful Transaction
         render json: res
     end
+
+    def history
+        res = {}
+        user = User.find_by_token(params[:token])
+        if user.nil?
+            res[:status] = "1"  # No such current user
+            render json: res
+            return
+        end
+        income = Transaction.where("receiver=?", user.email)
+        loss = user.transactions
+        record = []
+        record.push(*income)
+        record.push(*loss)
+        record.sort_by { |hsh| hsh[:created_at] }.reverse
+        
+        res[:status] = "0"      # Sucessfully returned record
+        res[:history] = record
+        render json: res
+    end
 end

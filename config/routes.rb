@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get '/api/invite_code/:token' => 'users#invite_code'
   get '/api/transfer/:token' => 'transactions#transfer'
   get '/api/coupon/:token' => 'coupons#avail_coupon'
+  get '/api/history/:token' => 'transactions#history'
 end
