@@ -39,6 +39,7 @@ class TransactionsController < ApplicationController
         t.user = src_user
         t.receiver = dest_user.email
         t.amount = amount
+        t.source = src_user.email
         src_user.coins -= amount
         dest_user.coins += amount
         src_user.save
@@ -61,10 +62,9 @@ class TransactionsController < ApplicationController
         record = []
         record.push(*income)
         record.push(*loss)
-        record.sort_by { |hsh| hsh[:created_at] }.reverse
-        
+
         res[:status] = "0"      # Sucessfully returned record
-        res[:history] = record
+        res[:history] = record.to_a.sort_by { |hsh| hsh[:created_at] }.reverse
         render json: res
     end
 end

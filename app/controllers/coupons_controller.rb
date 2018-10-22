@@ -14,6 +14,7 @@ class CouponsController < ApplicationController
 						t = Transaction.new
 						t.user = src
 						t.receiver = user.email
+						t.source = src.email
 						t.amount = coupon.amount
 						t.save
 						user.coupons_used << coupon.code

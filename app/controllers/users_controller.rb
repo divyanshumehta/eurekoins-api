@@ -23,6 +23,8 @@ class UsersController < ApplicationController
 			t = Transaction.new
 			t.user = User.first
 			t.receiver = user.email
+			t.amount = 25
+			t.source = User.first.email
 			user.coins = 25
 			host_user.coins += 25
 			host_user.save
