@@ -21,6 +21,12 @@ class UsersController < ApplicationController
 		host_user = User.find_by_invite_code(params[:referred_invite_code])
 		if params[:referred_invite_code] and !params[:referred_invite_code].blank? and host_user
 			t = Transaction.new
+			t1 = Transaction.new
+			t1.user = User.first
+			t1.receiver = host_user.email
+			t1.amount = 25
+			t1.source = User.first.email
+			t1.save
 			t.user = User.first
 			t.receiver = user.email
 			t.amount = 25
