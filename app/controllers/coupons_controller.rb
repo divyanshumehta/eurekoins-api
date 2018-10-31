@@ -21,6 +21,10 @@ class CouponsController < ApplicationController
 						user.coins += coupon.amount
 						user.save
 						res[:status] = "0"				# Used coupon successfully
+						if coupon.one_time
+							coupon.end_time = Time.now
+							coupon.save
+						end
 					else
 						res[:status] = "4"				# Couopon Expired
 					end
