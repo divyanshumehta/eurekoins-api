@@ -3,6 +3,11 @@ class TransactionsController < ApplicationController
     def transfer
         res = {}
         src_user = User.find_by_token(params[:token])
+        if amount > 6000
+            res[:status] = "4"  # Not a valid amount
+            render json: res
+            return
+        end
         if src_user.nil?
             res[:status] = "1"  # No such current user
             render json: res
